@@ -15,4 +15,4 @@ use App\Http\Controllers\PointCalculationController;
 |
 */
 
-Route::get('/calculate', [PointCalculationController::class, 'calculate'])->name(RouteNames::CALCULATE);
+Route::post('/calculate', [PointCalculationController::class, 'calculate'])->name(RouteNames::CALCULATE);
