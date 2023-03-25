@@ -18,6 +18,8 @@ stop:
 docker:
 	$(DC) $(ARGS)
 
+phpunit:
+	$(DC) exec backend bash -c "php artisan test"
 
 phpmd:
 	$(DC) exec backend bash -c "./vendor/bin/phpmd app html phpmd.xml --reportfile storage/docs/phpmd/phpmd.html --excludes tests,Config,Database,Tests"
