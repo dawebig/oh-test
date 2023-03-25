@@ -1,0 +1,42 @@
+version: '3.6'
+
+services:
+  mysql:
+    container_name: oh-test.mysql
+    image: 'mysql:8.0.17'
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_USER=oh-test
+      - MYSQL_DATABASE=oh-test
+      - MYSQL_PASSWORD=oh-test
+    ports:
+      - 3306:3306
+    command: --default-authentication-plugin=mysql_native_password
+
+  backend:
+    tty: true
+    container_name: oh-test.backend
+    build:
+      dockerfile: build/backend/Dockerfile
+      context:  .
+      target: dev
+    environment:
+      - COMPOSER_MEMORY_LIMIT=-1
+      - DB_HOST=mysql
+      - DB_USERNAME=oh-test
+      - DB_DATABASE=oh-test
+      - DB_PASSWORD=oh-test
+    depends_on:
+      - mysql
+    volumes:
+      - ./backend:/app
+    ports:
+      - 8000:80
+
+  mailcatcher:
+    container_name: oh-test.mailcatcher
+    image: dockage/mailcatcher
+    ports:
+      - 1025:1025
+      - 1080:1080
+    restart: on-failure:10
