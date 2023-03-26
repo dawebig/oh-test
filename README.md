@@ -20,3 +20,22 @@ $ make start
 $ make stop
 ```
 
+## PHPUNIT futtatása
+```bash
+$ make phpunit
+```
+
+## PHPMD futtatása
+```bash
+$ make phpmd
+```
+
+## PHPCS futtatása
+```bash
+$ make phpcs
+```
+
+## Postman collection
+```
+./OH TEST.postman_collection.json
+```

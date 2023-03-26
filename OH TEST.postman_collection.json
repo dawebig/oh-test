@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "69a5b49c-cd37-4424-b9d6-95ac95b4bf7a",
+		"name": "OH TEST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1382724"
+	},
+	"item": [
+		{
+			"name": "Calculate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "valasztott-szak[egyetem]",
+							"value": "ELTE",
+							"type": "text"
+						},
+						{
+							"key": "valasztott-szak[kar]",
+							"value": "IK",
+							"type": "text"
+						},
+						{
+							"key": "valasztott-szak[Szak]",
+							"value": "Programtervező informatikus",
+							"type": "text"
+						},
+						{
+							"key": "erettsegi-eredmenyek[0][nev]",
+							"value": "magyar nyelv és irodalom",
+							"type": "text"
+						},
+						{
+							"key": "erettsegi-eredmenyek[0][tipus]",
+							"value": "közép",
+							"type": "text"
+						},
+						{
+							"key": "erettsegi-eredmenyek[0][eredmeny]",
+							"value": "70%",
+							"type": "text"
+						},
+						{
+							"key": "erettsegi-eredmenyek[1][nev]",
+							"value": "történelem",
+							"type": "text"
+						},
+						{
+							"key": "erettsegi-eredmenyek[1][tipus]",
+							"value": "közép",
+							"type": "text"
+						},
+						{
+							"key": "erettsegi-eredmenyek[1][eredmeny]",
+							"value": "80%",
+							"type": "text"
+						},
+						{
+							"key": "erettsegi-eredmenyek[2][nev]",
+							"value": "matematika",
+							"type": "text"
+						},
+						{
+							"key": "erettsegi-eredmenyek[2][tipus]",
+							"value": "emelt",
+							"type": "text"
+						},
+						{
+							"key": "erettsegi-eredmenyek[2][eredmeny]",
+							"value": "90%",
+							"type": "text"
+						},
+						{
+							"key": "erettsegi-eredmenyek[3][nev]",
+							"value": "angol nyelv",
+							"type": "text"
+						},
+						{
+							"key": "erettsegi-eredmenyek[3][tipus]",
+							"value": "emelt",
+							"type": "text"
+						},
+						{
+							"key": "erettsegi-eredmenyek[3][eredmeny]",
+							"value": "94%",
+							"type": "text"
+						},
+						{
+							"key": "erettsegi-eredmenyek[4][nev]",
+							"value": "informatika",
+							"type": "text"
+						},
+						{
+							"key": "erettsegi-eredmenyek[4][tipus]",
+							"value": "közép",
+							"type": "text"
+						},
+						{
+							"key": "erettsegi-eredmenyek[4][eredmeny]",
+							"value": "95%",
+							"type": "text"
+						},
+						{
+							"key": "tobbletpontok[0][kategoria]",
+							"value": "Nyelvvizsga",
+							"type": "text"
+						},
+						{
+							"key": "tobbletpontok[0][tipus]",
+							"value": "B1",
+							"type": "text"
+						},
+						{
+							"key": "tobbletpontok[0][nyelv]",
+							"value": "angol",
+							"type": "text"
+						},
+						{
+							"key": "tobbletpontok[1][kategoria]",
+							"value": "Nyelvvizsga",
+							"type": "text"
+						},
+						{
+							"key": "tobbletpontok[1][tipus]",
+							"value": "C1",
+							"type": "text"
+						},
+						{
+							"key": "tobbletpontok[1][nyelv]",
+							"value": "német",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/calculate",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"calculate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
