@@ -29,7 +29,7 @@ class PointCalculationService
 
         list($isValid, $validationMessage) = $this->validate($request);
 
-        if(!$isValid) {
+        if (!$isValid) {
             return response()->json($validationMessage, Response::HTTP_BAD_REQUEST);
         }
 
@@ -45,28 +45,27 @@ class PointCalculationService
      * @param Request $request
      * @return float|int
      */
-    private function calculateDefaultPoint(Request $request) {
+    private function calculateDefaultPoint(Request $request)
+    {
 
         $university = $this->getUniversityInformation($request);
 
         $requiredPoint = 0;
         foreach ($this->results as $item) {
-            if ( in_array($item['name'], [$university['subjects']['required']['name']]) ) {
+            if (in_array($item['name'], [$university['subjects']['required']['name']])) {
                 if (isset($university['subjects']['required']['level'])) {
                     if ($university['subjects']['required']['level'] == $item['type']) {
                         $requiredPoint = $item['result'];
                     }
                 }
-                else {
-                    $requiredPoint = $item['result'];
-                }
+                $requiredPoint = $item['result'];
             }
         }
 
         $optionalPoint = 0;
         foreach ($this->results as $item) {
-            if ( in_array($item['name'], $university['subjects']['optionals']) ) {
-                if ($optionalPoint < $item['result'] ) {
+            if (in_array($item['name'], $university['subjects']['optionals'])) {
+                if ($optionalPoint < $item['result']) {
                     $optionalPoint = $item['result'];
                 }
             }
@@ -105,7 +104,7 @@ class PointCalculationService
                 default:
                     $point = 0;
             }
-            if ( !isset($languages[$item['language']]) || $languages[$item['language']] < $point) {
+            if (!isset($languages[$item['language']]) || $languages[$item['language']] < $point) {
                 $languages[$item['language']] = $point;
             }
         }
@@ -118,20 +117,24 @@ class PointCalculationService
      */
     private function validate(Request $request): array
     {
-        $foundRequiredSubjects = $this->validateAllContainSubject(['magyar nyelv és irodalom' ,'történelem', 'matematika']);
-        if ( !$foundRequiredSubjects ) {
+        $foundRequiredSubjects = $this->validateAllContainSubject([
+            'magyar nyelv és irodalom',
+            'történelem',
+            'matematika'
+        ]);
+        if (!$foundRequiredSubjects) {
             return [false, 'A pontszámítás nem lehetséges. (Kötelező érettségi tantárgy hiánya)'];
         }
 
         $university = $this->getUniversityInformation($request);
 
         $foundUniversityRequired = $this->validateUniversityContainSubject($university);
-        if ( !$foundUniversityRequired ) {
+        if (!$foundUniversityRequired) {
             return [false, 'A pontszámítás nem lehetséges. (Egyetemi kötelező tantárgy hiánya)'];
         }
 
         $foundUniversityOptionals = $this->validateContainOneOfSubject($university['subjects']['optionals']);
-        if ( !$foundUniversityOptionals ) {
+        if (!$foundUniversityOptionals) {
             return [false, 'A pontszámítás nem lehetséges. (Egyetemi kötelezően választható tantárgy hiánya)'];
         }
 
@@ -150,7 +153,7 @@ class PointCalculationService
     {
         $isUpper = true;
         foreach ($this->results as $item) {
-            if ($item['result'] < 20 ) {
+            if ($item['result'] < 20) {
                 $isUpper = false;
             }
         }
@@ -165,15 +168,13 @@ class PointCalculationService
     {
         $found = false;
         foreach ($this->results as $item) {
-            if ( in_array($item['name'], [$university['subjects']['required']['name']]) ) {
+            if (in_array($item['name'], [$university['subjects']['required']['name']])) {
                 if (isset($university['subjects']['required']['level'])) {
                     if ($university['subjects']['required']['level'] == $item['type']) {
                         $found = true;
                     }
                 }
-                else {
-                    $found = true;
-                }
+                $found = true;
             }
         }
         return $found;
@@ -187,8 +188,7 @@ class PointCalculationService
     {
         $found = [];
         foreach ($this->results as $item) {
-
-            if ( in_array($item['name'], $subject) ) {
+            if (in_array($item['name'], $subject)) {
                 $found[] = $item['name'];
             }
         }
@@ -213,7 +213,7 @@ class PointCalculationService
     private function getUniversityInformation(Request $request): array
     {
         $university = $request->get('valasztott-szak')['egyetem'];
-        switch($university) {
+        switch ($university) {
             case UniversityNames::PPKE:
                 return [
                     'name' => UniversityNames::PPKE,
@@ -259,7 +259,7 @@ class PointCalculationService
     {
         $extras = $request->get('tobbletpontok');
         foreach ($extras as $extra) {
-            if ( $extra['kategoria'] == 'Nyelvvizsga') {
+            if ($extra['kategoria'] == 'Nyelvvizsga') {
                 $this->extras->push([
                     'language' => $extra['nyelv'],
                     'level'    => $extra['tipus'],

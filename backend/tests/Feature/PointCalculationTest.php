@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Enums\RouteNames;
-use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
 class PointCalculationTest extends TestCase

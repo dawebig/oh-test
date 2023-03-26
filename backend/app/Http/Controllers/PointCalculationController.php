@@ -22,8 +22,8 @@ class PointCalculationController extends BaseController
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function calculate(Request $request) {
+    public function calculate(Request $request)
+    {
         return $this->service->calculatePoint($request);
     }
 }
-
