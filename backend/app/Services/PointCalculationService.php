@@ -53,12 +53,13 @@ class PointCalculationService
         $requiredPoint = 0;
         foreach ($this->results as $item) {
             if (in_array($item['name'], [$university['subjects']['required']['name']])) {
+                $requiredPoint = $item['result'];
                 if (isset($university['subjects']['required']['level'])) {
+                    $requiredPoint = 0;
                     if ($university['subjects']['required']['level'] == $item['type']) {
                         $requiredPoint = $item['result'];
                     }
                 }
-                $requiredPoint = $item['result'];
             }
         }
 
@@ -169,12 +170,13 @@ class PointCalculationService
         $found = false;
         foreach ($this->results as $item) {
             if (in_array($item['name'], [$university['subjects']['required']['name']])) {
+                $found = true;
                 if (isset($university['subjects']['required']['level'])) {
+                    $found = false;
                     if ($university['subjects']['required']['level'] == $item['type']) {
                         $found = true;
                     }
                 }
-                $found = true;
             }
         }
         return $found;
